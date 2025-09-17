@@ -20,111 +20,245 @@
 <meta name="twitter:image" content="https://kickwash.github.io/star/kickwash.jpg">
 
 <title>Kick Wash – Cupón personal de Apertura</title>
-<meta name="description" content="Cupón de apertura Kick Wash: $ 60 MXN de descuento en cualquiera de nuestros servicios.">
+<meta name="description" content="Cupón de apertura Kick Wash: $ 60 de descuento en cualquiera de nuestros servicios.">
 
 <style>
-
-  :root{
-    --bg-top:#d4f3ee; --bg-mid:#bff0ea; --bg-bot:#a8e7df;
-    --ink:#152026;
-    --panel:#16e6d3; --panel-deep:#11c7b7; --ink-dark:#0c2330;
-    --accent-1:#0a72d8; --accent-2:#d81b60;
-    --whatsapp:#25d366;
-    --card:#fff; --card-ink:#1b1b1b;
+  :root {
+    --bg-top: #d4f3ee;
+    --bg-mid: #bff0ea;
+    --bg-bot: #a8e7df;
+    --ink: #152026;
+    --panel: #16e6d3;
+    --panel-deep: #11c7b7;
+    --ink-dark: #0c2330;
+    --accent-1: #0a72d8;
+    --accent-2: #d81b60;
+    --whatsapp: #25d366;
+    --card: #fff;
+    --card-ink: #1b1b1b;
   }
 
-  *{box-sizing:border-box}
-  html,body{
-    margin:0; padding:0;
-    font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-    background:linear-gradient(180deg,var(--bg-top),var(--bg-mid) 55%,var(--bg-bot));
-    color:var(--ink);
+  * {
+    box-sizing: border-box;
   }
 
-  /* ===== Ticket vertical fijo (no responsive) ===== */
-  .ticket{
-    width: 420px;           /* ancho fijo tipo móvil */
-    height: 760px;          /* alto fijo para “ticket” */
-    margin: 0 auto;         /* centrado en pantallas grandes */
-    background: transparent;
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: linear-gradient(180deg, var(--bg-top), var(--bg-mid) 55%, var(--bg-bot));
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* Contenedor principal responsivo */
+  .wrap {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  
+  /* --- Letrero NEÓN --- */
+  .neon-wrap {
+    padding: 18px 16px 6px;
+  }
+
+  .neon {
+    background: linear-gradient(180deg, var(--panel), var(--panel-deep));
+    border-radius: 18px;
+    padding: 18px 16px;
+    text-align: center;
+    box-shadow: 0 0 12px rgba(22, 230, 211, .6), 0 0 30px rgba(22, 230, 211, .4), inset 0 0 10px rgba(255, 255, 255, .2);
+  }
+
+  .neon h1 {
+    margin: 0;
+    text-transform: uppercase;
+    line-height: .9;
+    font-weight: 900;
+    letter-spacing: .5px;
+    color: var(--ink-dark);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .25), 0 -1px 0 rgba(0, 0, 0, .12);
+    font-size: clamp(40px, 10vw, 52px); /* Tamaño de fuente responsivo */
+  }
+
+  .neon .sub {
+    margin-top: 4px;
+    font-weight: 700;
+    color: #053b45;
+    opacity: .75;
+    font-size: 13px;
+    letter-spacing: .2px;
+  }
+  
+  /* --- HERO RESPONSIVO CON TRASLAPE --- */
+  .hero {
+    position: relative;
+    width: 100%;
+    min-height: 340px; /* Altura mínima para asegurar espacio */
+    margin: 12px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .title {
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 100%;
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: .5px;
+  }
+
+  .title .top {
+    font-size: 22px;
+    color: var(--accent-1);
+  }
+
+  .title .sub {
+    font-size: 20px;
+    color: var(--accent-2);
+  }
+
+  /* Círculo de descuento */
+  .badge {
+    position: absolute;
+    z-index: 2;
+    left: -10px; /* Posicionamiento para traslape */
+    top: 90px;
+    background: var(--accent-2);
+    color: #fff;
+    border-radius: 999px;
+    width: 190px;
+    height: 190px;
+    display: flex; /* Usamos flex para centrar y ajustar espaciado */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: 900;
+    box-shadow: 0 10px 24px rgba(233, 30, 99, .35);
+  }
+
+  /* Ajustes para que el texto del círculo esté más junto */
+  .badge .big {
+    font-size: 44px;
+    line-height: 0.9;
+  }
+
+  .badge .small {
+    font-size: 16px;
+    line-height: 1;
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Imagen de los tenis */
+  .kicks {
+    position: absolute;
+    z-index: 1; /* Detrás del círculo */
+    right: -25px; /* Posicionamiento para traslape */
+    top: 110px;
+    width: 265px; /* Ancho base */
+    max-width: 75%; /* Máximo para que no se salga en pantallas chicas */
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 16px 28px rgba(0, 0, 0, .22));
+  }
+
+  /* --- Tarjeta de detalles --- */
+  .card {
+    background: var(--card);
+    color: var(--card-ink);
+    border-radius: 14px;
+    padding: 14px 16px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, .08);
+    margin-top: 8px;
+  }
+
+  h2 {
+    margin: 0 0 6px;
+    font-size: 18px;
+  }
+
+  p {
+    margin: 8px 0;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  strong {
+    font-weight: 800;
+  }
+
+  .cta {
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
   }
 
-  .wrap{max-width:420px;margin:0 auto;padding:16px}
-
-  /* Letrero NEÓN */
-  .neon-wrap{display:flex;align-items:center;justify-content:center;padding:18px 12px 6px}
-  .neon{
-    width:420px;
-    background:linear-gradient(180deg,var(--panel),var(--panel-deep));
-    border-radius:18px; padding:18px 16px; text-align:center;
-    box-shadow:0 0 12px rgba(22,230,211,.6),0 0 30px rgba(22,230,211,.4),inset 0 0 10px rgba(255,255,255,.2);
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 800;
+    color: #fff;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, .15);
+    transition: transform 0.2s ease;
   }
-  .neon h1{
-    margin:0; text-transform:uppercase; line-height:.9; font-weight:900; letter-spacing:.5px;
-    color:var(--ink-dark); text-shadow:0 1px 0 rgba(255,255,255,.25),0 -1px 0 rgba(0,0,0,.12);
-    font-size:52px;
+  
+  .btn:hover {
+    transform: translateY(-2px);
   }
-  .neon .sub{margin-top:4px;font-weight:700;color:#053b45;opacity:.75;font-size:13px;letter-spacing:.2px}
 
-  /* ===== Hero “no responsive” con posiciones absolutas ===== */
-  .hero{
-    position:relative;
-    width:420px; height:360px;   /* bloque fijo */
+  .btn.whatsapp {
+    background: var(--whatsapp)
+  }
+
+  .btn.share {
+    background: var(--accent-1)
+  }
+
+  .fine {
+    margin-top: 6px;
+    font-size: 13px;
+    opacity: .85;
+    text-align: center
+  }
+
+  .chip {
+    display: inline-block;
+    background: #16e6d333;
+    border: 1px dashed #16e6d399;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 13px;
+    margin-top: 6px
+  }
+
+  footer {
+    padding: 12px 16px 8px;
+    text-align: center;
+    opacity: .7;
+    font-size: 13px;
+    max-width: 420px;
     margin: 0 auto;
-    overflow:visible;            /* permitimos que sobresalga suavemente */
   }
-
-  .title{
-    position:absolute; left:16px; top:8px;
-    text-transform:uppercase; font-weight:800; line-height:1.02; letter-spacing:.5px
-  }
-  .title .top{font-size:22px;color:var(--accent-1)}
-  .title .sub{font-size:20px;color:var(--accent-2)}
-
-  /* Círculo y tenis traslapados */
-  .badge{
-    position:absolute; left:20px; top:116px;   /* controla la superposición */
-    z-index:2;
-    background:var(--accent-2); color:#fff; border-radius:999px;
-    width:190px; height:190px;
-    display:grid; place-items:center; text-align:center; font-weight:900;
-    box-shadow:0 10px 24px rgba(233,30,99,.35);
-  }
-  .badge .big{font-size:44px; line-height:1}          /* $ 60 */
-  .badge .small{font-size:16px; line-height:1; margin-top:2px} /* DE DESCUENTO */
-
-  .kicks{
-    position:absolute; right:14px; top:132px;   /* tenis debajo del círculo */
-    z-index:1;
-    width:265px; height:auto; display:block;
-    filter:drop-shadow(0 16px 28px rgba(0,0,0,.22));
-  }
-
-  /* ===== Tarjeta detalle (ajustada al ticket) ===== */
-  .card{
-    width:420px; margin:0 auto; margin-top:8px;
-    background:var(--card); color:var(--card-ink);
-    border-radius:14px; padding:14px 16px;
-    box-shadow:0 8px 18px rgba(0,0,0,.08);
-  }
-  h2{margin:0 0 6px;font-size:18px}
-  p{margin:8px 0;font-size:15px}
-  strong{font-weight:800}
-
-  .cta{display:flex;flex-direction:column;gap:10px;margin-top:10px}
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 14px;border-radius:10px;text-decoration:none;font-weight:800;color:#fff;box-shadow:0 6px 14px rgba(0,0,0,.15)}
-  .btn.whatsapp{background:var(--whatsapp)}
-  .btn.share{background:var(--accent-1)}
-  .fine{margin-top:6px;font-size:13px;opacity:.85;text-align:center}
-  .chip{display:inline-block;background:#16e6d333;border:1px dashed #16e6d399;border-radius:999px;padding:6px 12px;font-size:13px;margin-top:6px}
-  footer{width:420px;margin:12px auto 8px;text-align:center;opacity:.7;font-size:13px}
-</style>
 </style>
 </head>
 <body>
-  <!-- Letrero NEÓN -->
+  
   <div class="neon-wrap">
     <div class="neon" aria-label="Nombre del negocio">
       <h1>KICK<br>WASH</h1>
@@ -134,22 +268,22 @@
 
   <main class="wrap">
     
-    <!-- HERO CUPÓN (ticket vertical fijo) -->
-<section class="hero" aria-label="Cupón de apertura">
-  <div class="title">
-    <div class="top">Súper descuento</div>
-    <div class="sub">por apertura 🎉</div>
-  </div>
+    <!-- HERO CUPÓN -->
+    <section class="hero" aria-label="Cupón de apertura">
+      <div class="title">
+        <div class="top">Súper descuento</div>
+        <div class="sub">por apertura 🎉</div>
+      </div>
 
-  <!-- Círculo (encima) -->
-  <div class="badge">
-    <div class="big">$ 60</div>
-    <div class="small">DE DESCUENTO</div>
-  </div>
+      <!-- Círculo (encima) -->
+      <div class="badge">
+        <div class="big">$ 60</div>
+        <div class="small">DE DESCUENTO</div>
+      </div>
 
-  <!-- Tenis (debajo del círculo) -->
-  <img src="IMG_0028.png" alt="Tenis Kick Wash" class="kicks">
-</section>
+      <!-- Tenis (debajo del círculo) - Se usa la imagen con fondo transparente -->
+      <img src="https://kickwash.github.io/star/IMG_0028.png" alt="Tenis Kick Wash" class="kicks">
+    </section>
 
     <!-- DETALLE + CTA -->
     <section class="card" aria-label="Detalle del cupón y acciones">
@@ -168,23 +302,23 @@
 
       <p class="fine">Agenda también en Instagram <strong>@kick.wash.mx</strong></p>
     </section>
-
-    <footer>Kick Wash — tus tenis como nuevos, sin complicaciones.</footer>
   </main>
+  
+  <footer>Kick Wash — tus tenis como nuevos, sin complicaciones.</footer>
 
 <script>
   // Obtiene y valida ?code= (solo A-Z, a-z, 0–9)
-  function getParamCode(){
+  function getParamCode() {
     const raw = new URLSearchParams(window.location.search).get('code') || '';
-    return raw.replace(/[^A-Za-z0-9]/g,'');
+    return raw.replace(/[^A-Za-z0-9]/g, '');
   }
 
-  (function init(){
+  (function init() {
     const code = getParamCode();
 
     // Mensaje de WhatsApp
     const msgBase = `Hola! Quisiera obtener mi descuento de $ 60!!! 🤩\n\n` +
-                    (code ? `Cupón: ${code}` : `Cupón: (sin código)`);
+      (code ? `Cupón: ${code}` : `Cupón: (sin código)`);
 
     // Número (52 = MX)
     const phone = '525539901824';
@@ -196,12 +330,12 @@
     // Compartir preservando ?code
     const url = new URL(window.location.href);
     if (code) url.searchParams.set('code', code);
-    const shareText = `Mira este cupón de $ 60 MXN de descuento en Kick Wash, limpieza de calzado 👉 ${url.toString()}`;
+    const shareText = `Mira este cupón de $ 60 de descuento en Kick Wash, limpieza de calzado 👉 ${url.toString()}`;
     const shareURL = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
     document.getElementById('btn-share').setAttribute('href', shareURL);
 
     // Mostrar chip con el código
-    if (code){
+    if (code) {
       const chip = document.getElementById('couponChip');
       chip.textContent = `Cupón: ${code}`;
       chip.style.display = 'inline-block';
@@ -210,3 +344,5 @@
 </script>
 </body>
 </html>
+
+
