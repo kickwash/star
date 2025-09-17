@@ -132,36 +132,58 @@
   }
 
   /* Nuevo layout del hero: dos columnas, círculo a la izquierda, tenis a la derecha */
-  .hero-grid{
-    display:grid;
-    grid-template-columns: 1fr 1.1fr;
-    align-items:center;
-    justify-items:center;
-    gap: clamp(10px, 3vw, 22px);
-    position:relative;
-    padding: 10px 4px 0;
+  .hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: clamp(10px, 3vw, 22px);
+  padding: 10px 4px 0;
+}
+
+/* Badge más compacto */
+.badge {
+  background: var(--accent-2);
+  color: #fff;
+  border-radius: 999px;
+  width: min(200px, 45vw);
+  aspect-ratio: 1/1;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-weight: 900;
+  line-height: 1.05; /* más apretado */
+  box-shadow: 0 10px 24px rgba(233, 30, 99, .35);
+}
+.badge .big {
+  font-size: clamp(28px, 9vw, 46px);
+  line-height: 1; /* aún más apretado */
+}
+.badge .small {
+  font-size: clamp(12px, 3.8vw, 16px);
+  line-height: 1;
+  margin-top: 2px; /* separar ligeramente */
+}
+
+/* Tenis */
+.kicks {
+  width: 100%;
+  max-width: min(420px, 84vw);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 16px 28px rgba(0, 0, 0, .25));
+}
+
+/* En móviles: stack vertical */
+@media (max-width: 640px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
   }
-  .hero-left,
-  .hero-right{
-    position:relative;
+  .hero-left, .hero-right {
+    justify-self: center;
   }
-  .hero-left{
-    z-index:2;
-    /* Desplazamos el círculo ligeramente hacia la derecha para solaparlo con la imagen */
-    transform: translate(80px, 0);
-  }
-  .hero-right{
-    z-index:1;
-    /* Desplazamos la imagen de tenis hacia la izquierda para que se solape con el círculo */
-    transform: translate(-80px, 0);
-  }
-  @media (max-width: 420px){
-    .hero-grid{
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .badge{ width: min(180px, 44vw); }
-  }
+}
 
   /* Sello $60 */
   .badge{
