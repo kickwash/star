@@ -3,35 +3,55 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Kick Wash – Cupón perdonal de Apertura</title>
+<title>Kick Wash – Cupón personal de Apertura</title>
 <meta name="description" content="Cupón de apertura Kick Wash: $ 60 MXN de descuento en cualquiera de nuestros servicios.">
 <style>
+  /*
+    Paleta y estilos inspirados en la referencia proporcionada.
+    Se optó por un fondo claro degradado en tonos aqua y se mantienen
+    acentos fuertes para títulos y sellos. Se reorganizó el héroe
+    para colocar el círculo de descuento a la izquierda y las
+    zapatillas a la derecha con una ligera superposición.
+  */
   :root{
-    --bg: #0a0f0f;           /* fondo oscuro para resaltar el neón */
-    --ink: #e9f9f6;          /* texto claro */
-    --panel: #16e6d3;        /* turquesa del letrero */
-    --panel-deep: #11c7b7;
-    --ink-dark: #0c2330;     /* texto oscuro dentro del letrero */
-    --accent-1:#007cc3;      /* azul eléctrico */
-    --accent-2:#e91e63;      /* magenta para sello */
-    --whatsapp:#25d366;
-    --card:#101616;          /* tarjetas oscuras */
-    --card-ink:#dfeff0;
+    /* Colores de fondo tipo aqua (arriba a abajo) */
+    --bg-top:   #d4f3ee;
+    --bg-mid:   #bff0ea;
+    --bg-bot:   #a8e7df;
+    /* Texto principal oscuro */
+    --ink:      #152026;
+    /* Colores para el letrero Kick Wash */
+    --panel:    #16e6d3;
+    --panel-deep:#11c7b7;
+    --ink-dark: #0c2330;
+    /* Acentos */
+    --accent-1: #0a72d8;    /* azul para títulos */
+    --accent-2: #d81b60;    /* magenta para sello */
+    --whatsapp: #25d366;
+    /* Tarjetas */
+    --card:     #ffffff;
+    --card-ink: #1b1b1b;
   }
 
   *{box-sizing:border-box}
   html,body{
     margin:0; padding:0;
     font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-    background: radial-gradient(120% 120% at 50% -20%, #121a1a, var(--bg));
+    background: linear-gradient(180deg, var(--bg-top), var(--bg-mid) 55%, var(--bg-bot));
     color: var(--ink);
   }
 
-  .wrap{max-width:880px; margin:auto; padding:16px}
+  .wrap{
+    max-width:880px;
+    margin:auto;
+    padding:16px;
+  }
 
   /* ======= Letrero NEÓN “KICK WASH” ======= */
   .neon-wrap{
-    display:flex; align-items:center; justify-content:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     padding:28px 12px 22px;
   }
   .neon{
@@ -40,10 +60,9 @@
     border-radius:22px;
     padding:24px 18px;
     box-shadow:
-      0 0 12px rgba(22,230,211,.8),
-      0 0 42px rgba(22,230,211,.55),
-      0 0 90px rgba(22,230,211,.35),
-      inset 0 0 18px rgba(255,255,255,.25);
+      0 0 12px rgba(22,230,211,.6),
+      0 0 30px rgba(22,230,211,.4),
+      inset 0 0 10px rgba(255,255,255,.2);
     text-align:center;
   }
   .neon h1{
@@ -52,14 +71,17 @@
     line-height: .9;
     font-weight: 900;
     letter-spacing:.5px;
-    color: var(--ink-dark); /* texto oscuro dentro del panel turquesa */
+    color: var(--ink-dark);
     text-shadow:
       0 1px 0 rgba(255,255,255,.25),
       0 -1px 0 rgba(0,0,0,.12);
     font-size: clamp(44px, 16vw, 120px);
   }
   .neon .sub{
-    margin-top:6px; font-weight:700; color:#053b45; opacity:.75;
+    margin-top:6px;
+    font-weight:700;
+    color:#053b45;
+    opacity:.75;
     font-size: clamp(12px, 3.2vw, 16px);
     letter-spacing:.2px;
   }
@@ -69,97 +91,156 @@
     position:relative;
     border-radius:20px;
     overflow:hidden;
-    background:
-      radial-gradient(120% 120% at 50% 0%, rgba(255,255,255,.06), rgba(255,255,255,0) 50%),
-      linear-gradient(180deg, #0d1414, #0a0f0f 60%);
-    box-shadow:0 10px 30px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.04);
+    background: transparent;
+    box-shadow:none;
   }
-  .hero-inner{position:relative; padding:28px 18px 16px}
+  .hero-inner{
+    position:relative;
+    padding:26px 14px 8px; /* Menor espacio inferior para compactar */
+  }
   .title{
-    display:flex; flex-direction:column; gap:.15rem;
-    text-transform:uppercase; font-weight:800; line-height:1.02; letter-spacing:.5px
+    display:flex;
+    flex-direction:column;
+    gap:.15rem;
+    text-transform:uppercase;
+    font-weight:800;
+    line-height:1.02;
+    letter-spacing:.5px;
   }
-  .title .top{font-size:clamp(22px,6.2vw,40px); color:var(--accent-1)}
-  .title .sub{font-size:clamp(20px,5.8vw,36px); color:#ff3fa0}
+  .title .top{
+    font-size:clamp(22px,6.2vw,40px);
+    color:var(--accent-1);
+  }
+  .title .sub{
+    font-size:clamp(20px,5.8vw,36px);
+    color:var(--accent-2);
+  }
 
+  /* Nuevo layout del hero: dos columnas, círculo a la izquierda, tenis a la derecha */
   .hero-grid{
-    display:grid; gap:18px; align-items:center; grid-template-columns:1fr;
+    display:grid;
+    grid-template-columns: 1fr 1.1fr;
+    align-items:center;
+    justify-items:center;
+    gap: clamp(10px, 3vw, 22px);
+    position:relative;
+    padding: 10px 4px 0;
   }
-
-  .hero-grid {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  padding: 30px 0;
-}
-
-.stack {
-  position: relative;
-  display: inline-block;
-}
-
-.stack .kicks {
-  display: block;
-  max-width: min(420px, 80vw);
-  height: auto;
-  margin: 0 auto;
-}
-
-.stack .badge {
-  position: absolute;
-  top: 10%;
-  right: 5%;
-  transform: translate(20%, -20%);
-  z-index: 2;
-}
-  @media(min-width:760px){ .hero-grid{grid-template-columns: 1fr 1fr; gap:22px} }
+  .hero-left,
+  .hero-right{
+    position:relative;
+  }
+  .hero-left{
+    z-index:2;
+    /* Desplazamos el círculo ligeramente hacia la derecha para solaparlo con la imagen */
+    transform: translate(80px, 0);
+  }
+  .hero-right{
+    z-index:1;
+    /* Desplazamos la imagen de tenis hacia la izquierda para que se solape con el círculo */
+    transform: translate(-80px, 0);
+  }
+  @media (max-width: 420px){
+    .hero-grid{
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .badge{ width: min(180px, 44vw); }
+  }
 
   /* Sello $60 */
   .badge{
-    background:var(--accent-2); color:#fff; border-radius:999px;
-    width:min(220px,45vw); aspect-ratio:1/1;
-    display:grid; place-items:center; text-align:center;
-    font-weight:900; line-height:1.05;
-    box-shadow:0 18px 42px rgba(233,30,99,.35), inset 0 2px 6px rgba(255,255,255,.25);
+    background:var(--accent-2);
+    color:#fff;
+    border-radius:999px;
+    width:min(220px,42vw);
+    aspect-ratio:1/1;
+    display:grid;
+    place-items:center;
+    text-align:center;
+    font-weight:900;
+    line-height:1.05;
+    box-shadow:0 10px 24px rgba(216,27,96,.25);
   }
-  .badge .big{font-size:clamp(28px,9vw,46px)}
-  .badge .small{font-size:clamp(12px,3.8vw,16px);opacity:.95}
+  .badge .big{
+    font-size:clamp(26px,8.6vw,44px);
+  }
+  .badge .small{
+    font-size:clamp(12px,3.6vw,16px);
+    opacity:.95;
+  }
 
   /* Tenis recortados */
   .kicks{
-    width:100%; display:block;
-    filter: drop-shadow(0 28px 36px rgba(0,0,0,.55)) saturate(1.02);
-    transform: translateZ(0); /* mejorar render en móviles */
+    width:100%;
+    max-width:min(520px, 84vw);
+    height:auto;
+    display:block;
+    filter: drop-shadow(0 16px 28px rgba(0,0,0,.18));
+    transform: translateY(2px);
+    margin-bottom: -6px;
   }
 
   /* ======= Tarjeta detalle ======= */
   .card{
     background: var(--card);
     color: var(--card-ink);
-    border-radius:18px; padding:20px;
-    box-shadow: 0 10px 28px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04);
+    border-radius:18px;
+    padding:20px;
+    box-shadow: 0 8px 18px rgba(0,0,0,.08);
+    margin-top:12px;
+  }
+  h2{
+    margin:0 0 6px;
+    font-size:clamp(18px,4.8vw,22px);
+  }
+  p{
+    margin:8px 0;
+    font-size:clamp(15px,4.2vw,18px);
+  }
+  strong{font-weight:800;}
+
+  .cta{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
     margin-top:14px;
   }
-  h2{margin:0 0 6px; font-size:clamp(18px,4.8vw,22px)}
-  p{margin:8px 0; font-size:clamp(15px,4.2vw,18px)}
-  strong{font-weight:800}
-
-  .cta{display:flex; flex-direction:column; gap:12px; margin-top:14px}
   .btn{
-    display:inline-flex; align-items:center; justify-content:center; gap:10px;
-    padding:14px 18px; border-radius:12px; text-decoration:none; font-weight:800;
-    color:#fff; box-shadow:0 10px 18px rgba(0,0,0,.35);
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:14px 18px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:800;
+    color:#fff;
+    box-shadow:0 6px 14px rgba(0,0,0,.15);
   }
-  .btn.whatsapp{background:var(--whatsapp)}
-  .btn.share{background:var(--accent-1)}
-  .fine{margin-top:10px; font-size:14px; opacity:.85}
+  .btn.whatsapp{background:var(--whatsapp);}
+  .btn.share{background:var(--accent-1);}
+  .fine{
+    margin-top:10px;
+    font-size:14px;
+    opacity:.85;
+  }
   .chip{
-    display:inline-block; background:#16e6d333; border:1px dashed #16e6d399;
-    border-radius:999px; padding:6px 12px; font-size:14px; margin-top:8px
+    display:inline-block;
+    background:#16e6d333;
+    border:1px dashed #16e6d399;
+    border-radius:999px;
+    padding:6px 12px;
+    font-size:14px;
+    margin-top:8px;
   }
 
-  footer{margin:22px auto 8px; text-align:center; opacity:.8; font-size:14px}
+  footer{
+    margin:22px auto 8px;
+    text-align:center;
+    opacity:.7;
+    font-size:14px;
+  }
 </style>
 </head>
 <body>
@@ -179,16 +260,18 @@
           <div class="top">Súper descuento</div>
           <div class="sub">por apertura 🎉</div>
         </div>
-
+        <!-- Estructura en columnas: círculo a la izquierda y tenis a la derecha -->
         <div class="hero-grid">
-  <div class="stack">
-    <img src="IMG_0028.png" alt="Tenis Kick Wash" class="kicks">
-    <div class="badge">
-      <div class="big">$ 60 MXN</div>
-      <div class="small">DE DESCUENTO</div>
-    </div>
-  </div>
-</div>
+          <div class="hero-left">
+            <div class="badge">
+              <div class="big">$ 60 MXN</div>
+              <div class="small">DE DESCUENTO</div>
+            </div>
+          </div>
+          <div class="hero-right">
+            <img src="IMG_0028.png" alt="Tenis Kick Wash" class="kicks">
+          </div>
+        </div>
       </div>
     </section>
 
@@ -198,56 +281,44 @@
       <p>Con él obtienes <strong>$ 60 MXN de descuento</strong> en cualquiera de nuestros servicios.</p>
       <p>👉 Si no puedes usarlo, <strong>compártelo</strong>: si la persona a quien lo pases lo usa, <strong>tú recibes un 50% de descuento</strong> directo en tu próximo servicio.</p>
       <p>⚡ <strong>Válido hasta el viernes 19 de septiembre.</strong></p>
-
       <!-- Chip con el código (si viene en la URL) -->
       <div id="couponChip" class="chip" style="display:none"></div>
-
       <div class="cta">
         <!-- Abrir chat con texto precargado -->
         <a class="btn whatsapp" id="btn-chat" href="#" target="_blank" rel="noopener">
           💬 <span>Agenda en WhatsApp</span>
         </a>
-
         <!-- Compartir la promo por WhatsApp -->
         <a class="btn share" id="btn-share" href="#" target="_blank" rel="noopener">
-          🔗 <span>Comoarte y gana por WhatsApp</span>
+          🔗 <span>Comparte y gana por WhatsApp</span>
         </a>
       </div>
-
       <p class="fine">Agenda también en Instagram <strong>@kick.wash.mx</strong></p>
     </section>
-
     <footer>Kick Wash — tu calzado limpio, sin complicaciones.</footer>
   </main>
-
 <script>
   // Obtiene y valida ?code= (solo A-Z, a-z, 0-9)
   function getParamCode() {
     const raw = new URLSearchParams(window.location.search).get('code') || '';
     return raw.replace(/[^A-Za-z0-9]/g, '');
   }
-
   (function init(){
     const code = getParamCode();
-
     // Mensaje base para usar el cupón
     const msgBase = `Hola! Quisiera obtener mi descuento de $ 60!!! 🤩\n\n` +
                     (code ? `Cupón: ${code}` : `Cupón: (sin código)`);
-
     // Número destino (con 52 para México)
     const phone = '525539901824';
-
     // Link de chat
     const chatURL = `https://wa.me/${phone}?text=${encodeURIComponent(msgBase)}`;
     document.getElementById('btn-chat').setAttribute('href', chatURL);
-
     // Link para compartir (preserva el code)
     const url = new URL(window.location.href);
     if (code) url.searchParams.set('code', code);
     const shareText = `Mira este cupón de $ 60 MXN de descuento en Kick Wash, limpieza de calzado 👉 ${url.toString()}`;
     const shareURL = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
     document.getElementById('btn-share').setAttribute('href', shareURL);
-
     // Mostrar chip con el código
     if (code) {
       const chip = document.getElementById('couponChip');
