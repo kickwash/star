@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kick Wash – Tu calzado limpio, sin complicaciones</title>
+  <meta name="description" content="Limpieza profesional de calzado en Atizapán, Tlalnepantla, Naucalpan, Cuautitlán Izcalli y Azcapotzalco. Rutas semanales y servicio a domicilio.">
+  <link rel="preload" href="assets/logo-kickwash.png" as="image">
+  <style>
+    :root{
+      --brand:#10cfd4;         /* turquesa Kick Wash (ajústalo al tuyo) */
+      --brand-2:#0aa3a8;       /* turquesa oscuro para hover/gradiente */
+      --bg:#f5f8fa;
+      --ink:#1c1f23;
+      --muted:#5b6770;
+      --card:#ffffff;
+      --radius:16px;
+      --shadow:0 8px 24px rgba(0,0,0,.08);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0; padding:0; color:var(--ink); background:var(--bg); font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif}
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    header.site-header{
+      position:sticky; top:0; z-index:30; background:linear-gradient(180deg, #fff 0%, rgba(255,255,255,.9) 100%);
+      border-bottom:1px solid #eef2f4; backdrop-filter: blur(6px);
+    }
+    .wrap{max-width:1120px; margin:auto; padding:0 20px}
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0;
+    }
+    .nav .brand{display:flex; align-items:center; gap:12px}
+    .nav img.logo{height:40px; width:auto}
+    .nav .tagline{font-weight:600; color:var(--muted); font-size:14px}
+    .cta-whatsapp{
+      display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:12px;
+      background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#fff; box-shadow:var(--shadow);
+      font-weight:700;
+    }
+    .cta-whatsapp svg{width:18px; height:18px; fill:#fff}
+    /* Hero */
+    section#inicio{padding:56px 0 28px}
+    .hero{
+      display:grid; grid-template-columns: 1.4fr 1fr; gap:28px; align-items:center;
+    }
+    .hero h1{font-size: clamp(28px, 3.4vw, 44px); line-height:1.1; margin:0 0 10px}
+    .hero p{color:var(--muted); margin:0 0 20px}
+    .hero .card{
+      background:var(--card); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow);
+    }
+    /* Servicios */
+    section#servicios{padding:24px 0 8px}
+    .section-title{display:flex; align-items:end; justify-content:space-between; gap:12px; margin-bottom:18px}
+    .section-title h2{margin:0; font-size: clamp(22px, 2.8vw, 32px)}
+    .grid{
+      display:grid; gap:18px;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+    }
+    .card.service{
+      background:var(--card); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);
+      display:flex; flex-direction:column; min-height:100%;
+    }
+    .card .media{aspect-ratio: 4/3; background:#e9f6f7; display:flex; align-items:center; justify-content:center; overflow:hidden}
+    .card .media img{object-fit:cover; width:100%; height:100%}
+    .card .body{padding:16px}
+    .card .body h3{margin:0 0 6px; font-size:18px}
+    .card .body p{margin:0; color:var(--muted); font-size:14px}
+    /* Cómo funciona */
+    section#como-funciona{padding:24px 0}
+    .steps{display:grid; gap:16px; grid-template-columns: repeat(3, minmax(0,1fr))}
+    .step{background:var(--card); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+    .step h4{margin:0 0 6px}
+    .step p{margin:0; color:var(--muted)}
+    /* Antes / Después */
+    section#antes-despues{padding:24px 0}
+    .gallery{display:grid; gap:16px; grid-template-columns: repeat(3, minmax(0,1fr))}
+    .gallery .shot{border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); aspect-ratio: 1/1}
+    /* Equipo y rutas */
+    section#personal-rutas{padding:24px 0}
+    .panel{background:var(--card); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+    .zones{display:flex; flex-wrap:wrap; gap:10px; margin-top:8px}
+    .chip{background:#e9f6f7; color:#0b4a4d; padding:8px 12px; border-radius:999px; font-size:14px}
+    /* FAQs / Contacto */
+    section#contacto{padding:24px 0 52px}
+    details.faq{background:var(--card); border-radius:var(--radius); padding:14px 16px; box-shadow:var(--shadow)}
+    details.faq+details.faq{margin-top:10px}
+    summary{cursor:pointer; font-weight:600}
+    /* Footer */
+    footer{border-top:1px solid #e9edf0; background:#fff; padding:22px 0}
+    .socials{display:flex; gap:14px; align-items:center}
+    .socials a{padding:10px 12px; background:#f2f6f7; border-radius:10px; font-weight:600}
+    /* Responsive */
+    @media (max-width: 960px){
+      .hero{grid-template-columns: 1fr}
+      .grid{grid-template-columns: repeat(2, minmax(0,1fr))}
+      .steps{grid-template-columns: 1fr}
+      .gallery{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .grid{grid-template-columns: 1fr}
+      .gallery{grid-template-columns: 1fr}
+      .nav .tagline{display:none}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header / Nav -->
+  <header class="site-header">
+    <div class="wrap nav">
+      <div class="brand">
+        <img class="logo" src="assets/logo-kickwash.png" alt="Kick Wash">
+        <div class="tagline">Tu calzado limpio! Sin complicaciones</div>
+      </div>
+      <a class="cta-whatsapp" href="https://wa.me/5210000000000?text=%C2%A1Hola%20Kick%20Wash!%20Quiero%20agendar%20recolecci%C3%B3n%20para%20mis%20tenis.">
+        <!-- Ícono WhatsApp -->
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M19.11 17.03c-.27-.14-1.58-.78-1.82-.86-.24-.09-.42-.14-.6.14-.18.27-.69.86-.84 1.03-.15.18-.31.2-.58.07-.27-.14-1.13-.42-2.15-1.33-.79-.71-1.32-1.59-1.48-1.86-.15-.27-.02-.42.11-.56.11-.11.27-.3.4-.45.13-.16.18-.27.27-.45.09-.18.04-.34-.02-.48-.07-.14-.6-1.45-.82-1.99-.22-.53-.45-.45-.6-.45-.16 0-.34-.02-.53-.02-.18 0-.49.07-.75.34-.26.27-1 1-1 2.45s1.02 2.84 1.16 3.03c.14.18 2 3.05 4.84 4.27.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.58-.65 1.81-1.27.22-.62.22-1.15.15-1.27-.07-.11-.24-.18-.5-.31zM16 2.94c-7.19 0-13.06 5.84-13.06 13.05 0 2.3.6 4.56 1.74 6.56L2 30l7.66-2.01c1.95 1.07 4.15 1.64 6.37 1.64h.01c7.19 0 13.05-5.86 13.05-13.06S23.2 2.94 16 2.94zM25.2 22.6c-.39.88-1.78 1.69-2.5 1.81-.67.11-1.54.16-2.49-.15-.57-.18-1.3-.42-2.24-.82-3.95-1.71-6.53-5.7-6.73-5.97-.19-.27-1.61-2.15-1.61-4.11 0-1.96 1-2.91 1.35-3.31.36-.4.79-.5 1.06-.5h.75c.24 0 .55-.09.86.66.32.79 1.08 2.67 1.18 2.86.09.18.15.4.02.64-.13.24-.2.4-.39.62-.18.2-.38.44-.16.85.22.4.99 1.63 2.12 2.64 1.45 1.26 2.67 1.66 3.08 1.85.4.18.64.16.88-.1.27-.27 1.03-1.2 1.31-1.62.27-.4.56-.34.93-.2.38.13 2.37 1.12 2.77 1.32.41.2.68.3.78.47.11.16.11.95-.28 1.83z"/></svg>
+        Reservar por WhatsApp
+      </a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Sección 1: Hero -->
+    <section id="inicio" class="wrap">
+      <div class="hero">
+        <div>
+          <h1>Tu calzado limpio, <span style="color:var(--brand)">sin complicaciones</span>.</h1>
+          <p>Recogemos tus tenis, los dejamos como nuevos y te los entregamos. Servicio a domicilio, rutas semanales y opción express.</p>
+          <div style="display:flex; gap:12px; flex-wrap:wrap">
+            <a class="cta-whatsapp" href="#servicios">Ver servicios</a>
+            <a class="cta-whatsapp" style="background:transparent; color:var(--brand); box-shadow:none; border:2px solid var(--brand)" href="#contacto">Preguntas rápidas</a>
+          </div>
+        </div>
+        <div class="card" aria-hidden="true">
+          <img src="assets/hero-tenis.png" alt="Tenis limpios brillando">
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 2: Servicios y paquetes -->
+    <section id="servicios" class="wrap">
+      <div class="section-title">
+        <h2>Servicios y paquetes</h2>
+        <small style="color:var(--muted)">Imágenes ilustrativas; precios visibles en tu tabla interna.</small>
+      </div>
+
+      <div class="grid">
+        <!-- Limpieza profesional -->
+        <article class="card service">
+          <div class="media">
+            <img src="assets/serv-limpieza-profesional.jpg" alt="Limpieza profesional de tenis">
+          </div>
+          <div class="body">
+            <h3>Limpieza profesional</h3>
+            <p>Suela, mediasuela, agujetas, interiores y exteriores con productos de alta calidad.</p>
+          </div>
+        </article>
+
+        <!-- Blanqueamiento -->
+        <article class="card service">
+          <div class="media">
+            <img src="assets/serv-blanqueamiento.jpg" alt="Blanqueamiento de suelas y tenis">
+          </div>
+          <div class="body">
+            <h3>Blanqueamiento</h3>
+            <p>Tratamiento de suelas y/o tenis completos para recuperar el blanco.</p>
+          </div>
+        </article>
+
+        <!-- Tratamiento desinfectante -->
+        <article class="card service">
+          <div class="media">
+            <img src="assets/serv-desinfeccion.jpg" alt="Tratamiento desinfectante para calzado">
+          </div>
+          <div class="body">
+            <h3>Tratamiento desinfectante</h3>
+            <p>Anti hongos, anti olores y desinfección para un cuidado completo.</p>
+          </div>
+        </article>
+
+        <!-- Paquete Ultimate -->
+        <article class="card service">
+          <div class="media">
+            <img src="assets/serv-ultimate.jpg" alt="Paquete Ultimate de limpieza total">
+          </div>
+          <div class="body">
+            <h3>Paquete Ultimate</h3>
+            <p>Limpieza profesional + blanqueamiento + tratamiento desinfectante.</p>
+          </div>
+        </article>
+
+        <!-- Gamuza y Nobuk (nuevo) -->
+        <article class="card service">
+          <div class="media">
+            <img src="assets/serv-gamuza-nobuk.jpg" alt="Servicio especial para gamuza y nobuk">
+          </div>
+          <div class="body">
+            <h3>Gamuza y Nobuk</h3>
+            <p>Servicio especial con técnicas y productos adecuados para fibras delicadas.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Sección 3: Antes / Después -->
+    <section id="antes-despues" class="wrap">
+      <h2 class="section-title" style="margin-bottom:10px"><span>Resultados: antes y después</span></h2>
+      <div class="gallery">
+        <div class="shot"><img src="assets/before-after-1.jpg" alt="Antes y después 1"></div>
+        <div class="shot"><img src="assets/before-after-2.jpg" alt="Antes y después 2"></div>
+        <div class="shot"><img src="assets/before-after-3.jpg" alt="Antes y después 3"></div>
+      </div>
+    </section>
+
+    <!-- Sección 4: Cómo funciona -->
+    <section id="como-funciona" class="wrap">
+      <h2 class="section-title" style="margin-bottom:10px"><span>¿Cómo funciona?</span></h2>
+      <div class="steps">
+        <div class="step">
+          <h4>1) Envíanos mensaje</h4>
+          <p>Cuéntanos qué calzado vas a enviar y tu ubicación.</p>
+        </div>
+        <div class="step">
+          <h4>2) Recolección</h4>
+          <p>Pasamos por tus tenis en ruta semanal o servicio express.</p>
+        </div>
+        <div class="step">
+          <h4>3) Entrega</h4>
+          <p>Te entregamos en tu domicilio, limpios y listos para usarse.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 5: Nuestro equipo y rutas -->
+    <section id="personal-rutas" class="wrap">
+      <h2 class="section-title" style="margin-bottom:10px"><span>Nuestro equipo y rutas</span></h2>
+      <div class="panel">
+        <p>Equipo capacitado en cuidado de materiales (incluida gamuza y nobuk) y procesos higiénicos.</p>
+        <div class="zones">
+          <span class="chip">Atizapán</span>
+          <span class="chip">Tlalnepantla</span>
+          <span class="chip">Naucalpan</span>
+          <span class="chip">Cuautitlán Izcalli</span>
+          <span class="chip">Azcapotzalco (CDMX)</span>
+        </div>
+        <ul>
+          <li><strong>Rutas semanales:</strong> recolección sábado y entrega viernes.</li>
+          <li><strong>Servicio express:</strong> con agenda por WhatsApp (según disponibilidad).</li>
+          <li><strong>Centros de recolección:</strong> Tlalnepantla y Atizapán.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Sección 6: FAQs / Contacto -->
+    <section id="contacto" class="wrap">
+      <h2 class="section-title" style="margin-bottom:10px"><span>Preguntas frecuentes</span></h2>
+      <details class="faq">
+        <summary>¿Cuánto tarda el servicio?</summary>
+        <p>Ruta semanal: recogemos sábado y entregamos el viernes. Express: consulta por WhatsApp.</p>
+      </details>
+      <details class="faq">
+        <summary>¿Qué materiales atienden?</summary>
+        <p>Tela, piel, malla, caucho, sintéticos y servicio especial para gamuza y nobuk.</p>
+      </details>
+      <details class="faq">
+        <summary>¿En qué zonas operan?</summary>
+        <p>Atizapán, Tlalnepantla, Naucalpan, Cuautitlán Izcalli y Azcapotzalco.</p>
+      </details>
+
+      <div style="margin-top:14px; display:flex; gap:12px; flex-wrap:wrap">
+        <a class="cta-whatsapp" href="https://wa.me/5210000000000?text=Hola%20Kick%20Wash%2C%20%C2%BFme%20apoyan%20con%20una%20recolecci%C3%B3n%3F">Escríbenos por WhatsApp</a>
+        <a class="cta-whatsapp" style="background:transparent; color:var(--brand); box-shadow:none; border:2px solid var(--brand)" href="#servicios">Ver paquetes</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap">
+      <small>© <span id="y"></span> Kick Wash</small>
+      <div class="socials">
+        <a href="https://instagram.com/tu_instagram" aria-label="Instagram">Instagram</a>
+        <a href="https://facebook.com/tu_facebook" aria-label="Facebook">Facebook</a>
+        <a href="https://wa.me/5210000000000" aria-label="WhatsApp">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Año dinámico
+    document.getElementById('y').textContent = new Date().getFullYear();
+    // Desplazamiento suave
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth'}); }
+      });
+    });
+  </script>
+</body>
+</html>
