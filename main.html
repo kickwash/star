@@ -16,6 +16,7 @@
       --card:#ffffff;
       --radius:16px;
       --shadow:0 8px 24px rgba(0,0,0,.08);
+      --shadow-hard:0 8px 24px rgba(0,0,0,.2);
     }
     *{box-sizing:border-box}
     html,body{margin:0; padding:0; color:var(--ink); background:var(--bg); font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif}
@@ -27,17 +28,25 @@
     }
     .wrap{max-width:1120px; margin:auto; padding:0 20px}
     .nav{
-      display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0;
+      display:flex; align-items:center; justify-content:space-between; padding:14px 0;
     }
     .nav .brand{display:flex; align-items:center; gap:12px}
     .nav img.logo{height:40px; width:auto}
     .nav .tagline{font-weight:600; color:var(--muted); font-size:14px}
+    .nav .actions{display:flex; gap:8px; margin-left:auto}
     .cta-whatsapp{
       display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:12px;
       background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#fff; box-shadow:var(--shadow);
       font-weight:700;
     }
     .cta-whatsapp svg{width:18px; height:18px; fill:#fff}
+    .cta-share-whatsapp{
+      background:linear-gradient(135deg, var(--brand-2), var(--brand));
+      opacity:0.9;
+    }
+    .cta-share-whatsapp:hover{
+      opacity:1;
+    }
     /* Hero */
     section#inicio{padding:56px 0 28px}
     .hero{
@@ -72,9 +81,36 @@
     .step h4{margin:0 0 6px}
     .step p{margin:0; color:var(--muted)}
     /* Antes / Después */
-    section#antes-despues{padding:24px 0}
-    .gallery{display:grid; gap:16px; grid-template-columns: repeat(3, minmax(0,1fr))}
-    .gallery .shot{border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); aspect-ratio: 1/1}
+    section#antes-despues{
+      padding: 0;
+      
+      
+      margin-top: 20px;
+    }
+    section#antes-despues .section-title {
+      display:flex; align-items:end; justify-content:space-between; gap:12px; margin-bottom:18px
+    }
+
+    section#antes-despues .section-title h2 {
+      margin:0; font-size: clamp(22px, 2.8vw, 32px)
+    }
+    @media (max-width: 768px) {
+      section#antes-despues {
+        padding: 28px 0;
+      }
+    }
+    section#antes-despues #gallery-grid{margin-top:30px; display:flex; justify-content:center;
+      background-color:#3f7ca4;
+      padding: 10px;
+      border-radius:var(--radius); box-shadow:var(--shadow-hard);
+    }
+
+    @media (max-width: 560px){
+      section#antes-despues #gallery-grid{
+      padding: 10px;
+    }
+    }
+
     /* Equipo y rutas */
     section#personal-rutas{padding:24px 0}
     .panel{background:var(--card); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
@@ -94,11 +130,9 @@
       .hero{grid-template-columns: 1fr}
       .grid{grid-template-columns: repeat(2, minmax(0,1fr))}
       .steps{grid-template-columns: 1fr}
-      .gallery{grid-template-columns: repeat(2, minmax(0,1fr))}
     }
     @media (max-width: 560px){
       .grid{grid-template-columns: 1fr}
-      .gallery{grid-template-columns: 1fr}
       .nav .tagline{display:none}
     }
   </style>
@@ -112,11 +146,18 @@
         <img class="logo" src="assets/logo-kickwash.jpeg" alt="Kick Wash">
         <div class="tagline">Tu calzado limpio! Sin complicaciones</div>
       </div>
-      <a class="cta-whatsapp" href="https://wa.me/5210000000000?text=%C2%A1Hola%20Kick%20Wash!%20Quiero%20agendar%20recolecci%C3%B3n%20para%20mis%20tenis.">
-        <!-- Ícono WhatsApp -->
-        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M19.11 17.03c-.27-.14-1.58-.78-1.82-.86-.24-.09-.42-.14-.6.14-.18.27-.69.86-.84 1.03-.15.18-.31.2-.58.07-.27-.14-1.13-.42-2.15-1.33-.79-.71-1.32-1.59-1.48-1.86-.15-.27-.02-.42.11-.56.11-.11.27-.3.4-.45.13-.16.18-.27.27-.45.09-.18.04-.34-.02-.48-.07-.14-.6-1.45-.82-1.99-.22-.53-.45-.45-.6-.45-.16 0-.34-.02-.53-.02-.18 0-.49.07-.75.34-.26.27-1 1-1 2.45s1.02 2.84 1.16 3.03c.14.18 2 3.05 4.84 4.27.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.58-.65 1.81-1.27.22-.62.22-1.15.15-1.27-.07-.11-.24-.18-.5-.31zM16 2.94c-7.19 0-13.06 5.84-13.06 13.05 0 2.3.6 4.56 1.74 6.56L2 30l7.66-2.01c1.95 1.07 4.15 1.64 6.37 1.64h.01c7.19 0 13.05-5.86 13.05-13.06S23.2 2.94 16 2.94zM25.2 22.6c-.39.88-1.78 1.69-2.5 1.81-.67.11-1.54.16-2.49-.15-.57-.18-1.3-.42-2.24-.82-3.95-1.71-6.53-5.7-6.73-5.97-.19-.27-1.61-2.15-1.61-4.11 0-1.96 1-2.91 1.35-3.31.36-.4.79-.5 1.06-.5h.75c.24 0 .55-.09.86.66.32.79 1.08 2.67 1.18 2.86.09.18.15.4.02.64-.13.24-.2.4-.39.62-.18.2-.38.44-.16.85.22.4.99 1.63 2.12 2.64 1.45 1.26 2.67 1.66 3.08 1.85.4.18.64.16.88-.1.27-.27 1.03-1.2 1.31-1.62.27-.4.56-.34.93-.2.38.13 2.37 1.12 2.77 1.32.41.2.68.3.78.47.11.16.11.95-.28 1.83z"/></svg>
-        Reservar por WhatsApp
-      </a>
+      <div class="actions">
+        <a class="cta-whatsapp cta-share-whatsapp" id="header-share-whatsapp">
+          <!-- Ícono Share WhatsApp -->
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M26.2 5.8C23.4 3 19.8 1.5 16 1.5C8.1 1.5 1.7 7.9 1.7 15.8C1.7 18.3 2.4 20.7 3.6 22.8L1.5 30.5L9.4 28.4C11.4 29.5 13.7 30.1 16 30.1H16C23.9 30.1 30.3 23.7 30.3 15.8C30.3 12 28.9 8.5 26.2 5.8ZM16 27.7C13.9 27.7 11.9 27.1 10.1 26L9.7 25.8L4.9 27.1L6.2 22.4L5.9 22C4.8 20.1 4.2 18 4.2 15.8C4.2 9.2 9.4 4 16 4C19.1 4 22.1 5.3 24.3 7.5C26.5 9.7 27.8 12.7 27.8 15.8C27.8 22.4 22.6 27.7 16 27.7ZM21.7 18.6C21.4 18.4 19.9 17.7 19.6 17.6C19.3 17.5 19.1 17.4 18.9 17.7C18.7 18 18.2 18.6 18 18.8C17.8 19 17.7 19.1 17.4 18.9C17.1 18.7 16.1 18.4 14.9 17.3C14 16.5 13.3 15.5 13.1 15.2C12.9 14.9 13.1 14.8 13.3 14.6C13.4 14.5 13.6 14.3 13.7 14.1C13.8 13.9 13.9 13.8 14 13.6C14.1 13.4 14 13.2 13.9 13C13.8 12.8 13.1 11.3 12.9 10.7C12.7 10.1 12.4 10.2 12.2 10.2C12 10.2 11.8 10.2 11.6 10.2C11.4 10.2 11.1 10.3 10.8 10.6C10.5 10.9 9.8 11.6 9.8 13.1C9.8 14.6 10.9 16 11.1 16.2C11.3 16.4 13.3 19.4 16.3 20.7C17 21 17.6 21.2 18 21.3C18.7 21.5 19.3 21.5 19.8 21.4C20.3 21.2 21.5 20.6 21.7 19.9C22 19.2 22 18.7 21.8 18.6H21.7Z"/></svg>
+          Compartir
+        </a>
+        <a class="cta-whatsapp" id="header-contact-whatsapp">
+          <!-- Ícono WhatsApp -->
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M26.2 5.8C23.4 3 19.8 1.5 16 1.5C8.1 1.5 1.7 7.9 1.7 15.8C1.7 18.3 2.4 20.7 3.6 22.8L1.5 30.5L9.4 28.4C11.4 29.5 13.7 30.1 16 30.1H16C23.9 30.1 30.3 23.7 30.3 15.8C30.3 12 28.9 8.5 26.2 5.8ZM16 27.7C13.9 27.7 11.9 27.1 10.1 26L9.7 25.8L4.9 27.1L6.2 22.4L5.9 22C4.8 20.1 4.2 18 4.2 15.8C4.2 9.2 9.4 4 16 4C19.1 4 22.1 5.3 24.3 7.5C26.5 9.7 27.8 12.7 27.8 15.8C27.8 22.4 22.6 27.7 16 27.7ZM21.7 18.6C21.4 18.4 19.9 17.7 19.6 17.6C19.3 17.5 19.1 17.4 18.9 17.7C18.7 18 18.2 18.6 18 18.8C17.8 19 17.7 19.1 17.4 18.9C17.1 18.7 16.1 18.4 14.9 17.3C14 16.5 13.3 15.5 13.1 15.2C12.9 14.9 13.1 14.8 13.3 14.6C13.4 14.5 13.6 14.3 13.7 14.1C13.8 13.9 13.9 13.8 14 13.6C14.1 13.4 14 13.2 13.9 13C13.8 12.8 13.1 11.3 12.9 10.7C12.7 10.1 12.4 10.2 12.2 10.2C12 10.2 11.8 10.2 11.6 10.2C11.4 10.2 11.1 10.3 10.8 10.6C10.5 10.9 9.8 11.6 9.8 13.1C9.8 14.6 10.9 16 11.1 16.2C11.3 16.4 13.3 19.4 16.3 20.7C17 21 17.6 21.2 18 21.3C18.7 21.5 19.3 21.5 19.8 21.4C20.3 21.2 21.5 20.6 21.7 19.9C22 19.2 22 18.7 21.8 18.6H21.7Z"/></svg>
+          Escribenos por WhatsApp
+        </a>
+      </div>
     </div>
   </header>
 
@@ -128,7 +169,7 @@
         <div>
           <h1>Tu calzado limpio, <span style="color:var(--brand)">sin complicaciones</span>.</h1>
           <p>Tú eliges: tráelos o vamos por ellos, ¡y entregamos listos para brillar!</p>
-          <p>Contamos con centros de servicio, rutas semanales, servicio a domicilio y opción express.</p>
+          <p>Contamos con centro de servicio, rutas semanales, servicio a domicilio y opción express.</p>
           <div style="display:flex; gap:12px; flex-wrap:wrap">
             <a class="cta-whatsapp" href="#servicios">Ver servicios</a>
             <a class="cta-whatsapp" style="background:transparent; color:var(--brand); box-shadow:none; border:2px solid var(--brand)" href="#contacto">Preguntas rápidas</a>
@@ -144,7 +185,7 @@
     <section id="servicios" class="wrap">
       <div class="section-title">
         <h2>Servicios y paquetes</h2>
-        <small style="color:var(--muted)">Imágenes ilustrativas; precios visibles en tu tabla interna.</small>
+        <small style="color:var(--muted)">Imágenes ilustrativas.</small>
       </div>
 
       <div class="grid">
@@ -203,17 +244,27 @@
           </div>
         </article>
 
+        <!-- Express (nuevo) -->
+        <article class="card service">
+          <div class="media">
+            <img src="assets/serv-express.jpg" alt="Servicio express de limpieza">
+          </div>
+          <div class="body">
+            <h3>Express</h3>
+            <p>Servicio de limpieza rápida con atención personalizada.</p>
+          </div>
+        </article>
+
       </div>
     </section>
 
     <!-- Sección 3: Antes / Después -->
     <section id="antes-despues" class="wrap">
-      <h2 class="section-title" style="margin-bottom:10px"><span>Resultados: antes y después</span></h2>
-      <div class="gallery">
-        <div class="shot"><img src="assets/before-after-1.jpg" alt="Antes y después 1"></div>
-        <div class="shot"><img src="assets/before-after-2.jpg" alt="Antes y después 2"></div>
-        <div class="shot"><img src="assets/before-after-3.jpg" alt="Antes y después 3"></div>
-      </div>
+      <div class="section-title">
+        <h2><span>Resultados: antes y después</span></h2>
+        <small style="color:var(--muted)">Imágenes de nuestros clientes.</small>
+      </div>      
+      <div id="gallery-grid"></div>
     </section>
 
     <!-- Sección 4: Cómo funciona -->
@@ -250,7 +301,7 @@
         <ul>
           <li><strong>Rutas semanales:</strong> recolección sábado y entrega viernes.</li>
           <li><strong>Servicio express:</strong> con agenda por WhatsApp (según disponibilidad).</li>
-          <li><strong>Centros de recolección:</strong> Tlalnepantla y Atizapán.</li>
+          <li><strong>Centros de servicio:</strong> Tlalnepantla.</li>
         </ul>
       </div>
     </section>
@@ -260,7 +311,9 @@
       <h2 class="section-title" style="margin-bottom:10px"><span>Preguntas frecuentes</span></h2>
       <details class="faq">
         <summary>¿Cuánto tarda el servicio?</summary>
-        <p>Ruta semanal: recogemos sábado y entregamos el viernes. Express: consulta por WhatsApp.</p>
+        <p>Ruta semanal: recogemos sábado y entregamos el jueves, listos para el fin de semana.</p>
+        <p>Centro de servicio: traenos tu calzado y entregamos de 3 a 5 días.</p>
+        <p>Servicio express: Listos al día siguiente, aplica solo para "servicio de limpieza express", no aplica "limpieza profesional" o "paquete ultimate".</p>
       </details>
       <details class="faq">
         <summary>¿Qué materiales atienden?</summary>
@@ -268,11 +321,21 @@
       </details>
       <details class="faq">
         <summary>¿En qué zonas operan?</summary>
-        <p>Atizapán, Tlalnepantla, Naucalpan, Cuautitlán Izcalli y Azcapotzalco.</p>
+        <p>Para servicio a domicilio y rutas semanales operamos en algunas zonas de Atizapán, Tlalnepantla, Naucalpan, Cuautitlán Izcalli y CDMX.</p>
+        <p>Tenemos centro de servicio en Tlalnepantla de Baz, muy cerca de mundo e.</p>
       </details>
 
       <div style="margin-top:14px; display:flex; gap:12px; flex-wrap:wrap">
-        <a class="cta-whatsapp" href="https://wa.me/5210000000000?text=Hola%20Kick%20Wash%2C%20%C2%BFme%20apoyan%20con%20una%20recolecci%C3%B3n%3F">Escríbenos por WhatsApp</a>
+        <a class="cta-whatsapp cta-share-whatsapp" id="footer-share-whatsapp">
+          <!-- Ícono Share WhatsApp -->
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M26.2 5.8C23.4 3 19.8 1.5 16 1.5C8.1 1.5 1.7 7.9 1.7 15.8C1.7 18.3 2.4 20.7 3.6 22.8L1.5 30.5L9.4 28.4C11.4 29.5 13.7 30.1 16 30.1H16C23.9 30.1 30.3 23.7 30.3 15.8C30.3 12 28.9 8.5 26.2 5.8ZM16 27.7C13.9 27.7 11.9 27.1 10.1 26L9.7 25.8L4.9 27.1L6.2 22.4L5.9 22C4.8 20.1 4.2 18 4.2 15.8C4.2 9.2 9.4 4 16 4C19.1 4 22.1 5.3 24.3 7.5C26.5 9.7 27.8 12.7 27.8 15.8C27.8 22.4 22.6 27.7 16 27.7ZM21.7 18.6C21.4 18.4 19.9 17.7 19.6 17.6C19.3 17.5 19.1 17.4 18.9 17.7C18.7 18 18.2 18.6 18 18.8C17.8 19 17.7 19.1 17.4 18.9C17.1 18.7 16.1 18.4 14.9 17.3C14 16.5 13.3 15.5 13.1 15.2C12.9 14.9 13.1 14.8 13.3 14.6C13.4 14.5 13.6 14.3 13.7 14.1C13.8 13.9 13.9 13.8 14 13.6C14.1 13.4 14 13.2 13.9 13C13.8 12.8 13.1 11.3 12.9 10.7C12.7 10.1 12.4 10.2 12.2 10.2C12 10.2 11.8 10.2 11.6 10.2C11.4 10.2 11.1 10.3 10.8 10.6C10.5 10.9 9.8 11.6 9.8 13.1C9.8 14.6 10.9 16 11.1 16.2C11.3 16.4 13.3 19.4 16.3 20.7C17 21 17.6 21.2 18 21.3C18.7 21.5 19.3 21.5 19.8 21.4C20.3 21.2 21.5 20.6 21.7 19.9C22 19.2 22 18.7 21.8 18.6H21.7Z"/></svg>
+          Compartir
+        </a>
+        <a class="cta-whatsapp" id="footer-contact-whatsapp">
+          <!-- Ícono WhatsApp -->
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M26.2 5.8C23.4 3 19.8 1.5 16 1.5C8.1 1.5 1.7 7.9 1.7 15.8C1.7 18.3 2.4 20.7 3.6 22.8L1.5 30.5L9.4 28.4C11.4 29.5 13.7 30.1 16 30.1H16C23.9 30.1 30.3 23.7 30.3 15.8C30.3 12 28.9 8.5 26.2 5.8ZM16 27.7C13.9 27.7 11.9 27.1 10.1 26L9.7 25.8L4.9 27.1L6.2 22.4L5.9 22C4.8 20.1 4.2 18 4.2 15.8C4.2 9.2 9.4 4 16 4C19.1 4 22.1 5.3 24.3 7.5C26.5 9.7 27.8 12.7 27.8 15.8C27.8 22.4 22.6 27.7 16 27.7ZM21.7 18.6C21.4 18.4 19.9 17.7 19.6 17.6C19.3 17.5 19.1 17.4 18.9 17.7C18.7 18 18.2 18.6 18 18.8C17.8 19 17.7 19.1 17.4 18.9C17.1 18.7 16.1 18.4 14.9 17.3C14 16.5 13.3 15.5 13.1 15.2C12.9 14.9 13.1 14.8 13.3 14.6C13.4 14.5 13.6 14.3 13.7 14.1C13.8 13.9 13.9 13.8 14 13.6C14.1 13.4 14 13.2 13.9 13C13.8 12.8 13.1 11.3 12.9 10.7C12.7 10.1 12.4 10.2 12.2 10.2C12 10.2 11.8 10.2 11.6 10.2C11.4 10.2 11.1 10.3 10.8 10.6C10.5 10.9 9.8 11.6 9.8 13.1C9.8 14.6 10.9 16 11.1 16.2C11.3 16.4 13.3 19.4 16.3 20.7C17 21 17.6 21.2 18 21.3C18.7 21.5 19.3 21.5 19.8 21.4C20.3 21.2 21.5 20.6 21.7 19.9C22 19.2 22 18.7 21.8 18.6H21.7Z"/></svg>
+          Escribenos por WhatsApp
+        </a>
         <a class="cta-whatsapp" style="background:transparent; color:var(--brand); box-shadow:none; border:2px solid var(--brand)" href="#servicios">Ver paquetes</a>
       </div>
     </section>
@@ -286,11 +349,11 @@
       <div class="socials">
         <a href="https://instagram.com/tu_instagram" aria-label="Instagram">Instagram</a>
         <a href="https://facebook.com/tu_facebook" aria-label="Facebook">Facebook</a>
-        <a href="https://wa.me/5210000000000" aria-label="WhatsApp">WhatsApp</a>
       </div>
     </div>
   </footer>
 
+  <script src="image-grid-component.js"></script>
   <script>
     // Año dinámico
     document.getElementById('y').textContent = new Date().getFullYear();
@@ -302,6 +365,51 @@
         if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth'}); }
       });
     });
+
+    // Initialize gallery with before/after images
+    const galleryImages = [
+      { src: 'assets/testimony/case-a-1.jpg', alt: 'Resultado de limpieza 1', title: 'Antes y después - Caso 1', type: 'antes' },
+      { src: 'assets/testimony/case-a-2.jpg', alt: 'Resultado de limpieza 2', title: 'Antes y después - Caso 2', type: 'antes' },
+      { src: 'assets/testimony/case-a-3.jpg', alt: 'Resultado de limpieza 3', title: 'Antes y después - Caso 3', type: 'antes' },
+      { src: 'assets/testimony/case-a-3-b.jpg', alt: 'Resultado de limpieza 3', title: 'Antes y después - Caso 3', type: 'antes' },      
+      { src: 'assets/testimony/case-a-4.jpg', alt: 'Resultado de limpieza 4', title: 'Antes y después - Caso 4', type: 'despues' },
+      { src: 'assets/testimony/case-a-5.jpg', alt: 'Resultado de limpieza 5', title: 'Antes y después - Caso 5', type: 'despues' },
+      { src: 'assets/testimony/case-a-6.jpg', alt: 'Resultado de limpieza 6', title: 'Antes y después - Caso 6', type: 'despues' },
+      { src: 'assets/testimony/case-a-7.jpg', alt: 'Resultado de limpieza 7', title: 'Antes y después - Caso 7', type: 'despues' },
+      { src: 'assets/testimony/case-a-9.jpg', alt: 'Resultado de limpieza 9', title: 'Antes y después - Caso 9', type: 'despues' },
+
+    ];
+
+    // Initialize the gallery grid with custom options
+    const galleryGrid = new ImageGridComponent('#gallery-grid', galleryImages, {
+      gap: '12px',
+      borderRadius: '16px',
+      maxWidth: '600px'
+    });
+
+    (function init() {
+      // Mensaje de WhatsApp
+      const msgBase = `¡Hola Kick Wash!`;
+
+      // Número (52 = MX)
+      const phone = '525539901824';
+
+      // URLs base
+      const chatURL = `https://wa.me/${phone}?text=${encodeURIComponent(msgBase)}`;
+      
+      // Compartir
+      const currentUrl = window.location.href;
+      const shareText = `¡Mira este servicio de limpieza de calzado!✨ 👉 Kick Wash!! ${currentUrl}`;
+      const shareURL = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+
+      // Configurar botones de WhatsApp
+      const whatsappButtons = document.querySelectorAll('[id$="-contact-whatsapp"]');
+      whatsappButtons.forEach(button => button.setAttribute('href', chatURL));
+
+      // Configurar botones de compartir
+      const shareButtons = document.querySelectorAll('[id$="-share-whatsapp"]');
+      shareButtons.forEach(button => button.setAttribute('href', shareURL));
+    })();
   </script>
 </body>
 </html>

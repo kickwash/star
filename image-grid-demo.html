@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Grid Component Demo</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .demo-section {
+            margin-bottom: 40px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .demo-section h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .demo-container {
+            margin: 20px 0;
+        }
+        
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .controls button {
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .controls button:hover {
+            background: #0056b3;
+        }
+        
+        .event-log {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 10px;
+            margin-top: 10px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Grid Component Demo</h1>
+    
+    <!-- Basic Example -->
+    <div class="demo-section">
+        <h2>Basic 3x3 Grid</h2>
+        <p>Click on any thumbnail to maximize it. Click the maximized image or overlay to return to grid view.</p>
+        <div class="demo-container" id="basic-grid"></div>
+    </div>
+    
+    <!-- Customized Example -->
+    <div class="demo-section">
+        <h2>Customized Grid (Larger gap, rounded corners)</h2>
+        <div class="demo-container" id="custom-grid"></div>
+    </div>
+    
+    <!-- Before/After Example -->
+    <div class="demo-section">
+        <h2>Before/After Grid with Visual Banners</h2>
+        <p>Red banners indicate "before" images, green banners indicate "after" images.</p>
+        <div class="demo-container" id="before-after-grid"></div>
+    </div>
+    
+    <!-- Dynamic Example -->
+    <div class="demo-section">
+        <h2>Dynamic Grid with Controls</h2>
+        <div class="controls">
+            <button onclick="changeImages()">Change Images</button>
+            <button onclick="addImage()">Add Image</button>
+            <button onclick="removeImage()">Remove Last Image</button>
+        </div>
+        <div class="demo-container" id="dynamic-grid"></div>
+        <div class="event-log" id="event-log"></div>
+    </div>
+
+    <script src="image-grid-component.js"></script>
+    <script>
+        // Sample images - using placeholder service for demo
+        const sampleImages1 = [
+            { src: 'https://picsum.photos/400/400?random=1', alt: 'Random image 1', title: 'Beautiful landscape', type: 'before' },
+            { src: 'https://picsum.photos/400/400?random=2', alt: 'Random image 2', title: 'City architecture', type: 'after' },
+            { src: 'https://picsum.photos/400/400?random=3', alt: 'Random image 3', title: 'Nature scene', type: 'before' },
+            { src: 'https://picsum.photos/400/400?random=4', alt: 'Random image 4', title: 'Abstract art', type: 'after' },
+            { src: 'https://picsum.photos/400/400?random=5', alt: 'Random image 5', title: 'Street photography', type: 'before' },
+            { src: 'https://picsum.photos/400/400?random=6', alt: 'Random image 6', title: 'Mountain view', type: 'after' },
+            { src: 'https://picsum.photos/400/400?random=7', alt: 'Random image 7', title: 'Ocean waves', type: 'before' },
+            { src: 'https://picsum.photos/400/400?random=8', alt: 'Random image 8', title: 'Forest path', type: 'after' },
+            { src: 'https://picsum.photos/400/400?random=9', alt: 'Random image 9', title: 'Desert sunset', type: 'before' }
+        ];
+
+        const sampleImages2 = [
+            'https://picsum.photos/400/400?random=10',
+            'https://picsum.photos/400/400?random=11',
+            'https://picsum.photos/400/400?random=12',
+            'https://picsum.photos/400/400?random=13',
+            'https://picsum.photos/400/400?random=14',
+            'https://picsum.photos/400/400?random=15',
+            'https://picsum.photos/400/400?random=16',
+            'https://picsum.photos/400/400?random=17',
+            'https://picsum.photos/400/400?random=18'
+        ];
+
+        // Initialize basic grid
+        const basicGrid = new ImageGridComponent('#basic-grid', sampleImages1);
+
+        // Initialize customized grid
+        const customGrid = new ImageGridComponent('#custom-grid', sampleImages2, {
+            gap: '16px',
+            borderRadius: '20px',
+            maxWidth: '500px'
+        });
+
+        // Before/After sample images
+        const beforeAfterImages = [
+            { src: 'https://picsum.photos/400/400?random=20', alt: 'Before cleaning 1', title: 'Dirty shoe before cleaning', type: 'before' },
+            { src: 'https://picsum.photos/400/400?random=21', alt: 'After cleaning 1', title: 'Clean shoe after cleaning', type: 'after' },
+            { src: 'https://picsum.photos/400/400?random=22', alt: 'Before cleaning 2', title: 'Dirty sneaker before cleaning', type: 'before' },
+            { src: 'https://picsum.photos/400/400?random=23', alt: 'After cleaning 2', title: 'Clean sneaker after cleaning', type: 'after' },
+            { src: 'https://picsum.photos/400/400?random=24', alt: 'Before cleaning 3', title: 'Worn shoe before cleaning', type: 'before' },
+            { src: 'https://picsum.photos/400/400?random=25', alt: 'After cleaning 3', title: 'Restored shoe after cleaning', type: 'after' },
+            { src: 'https://picsum.photos/400/400?random=26', alt: 'Before cleaning 4', title: 'Stained shoe before cleaning', type: 'before' },
+            { src: 'https://picsum.photos/400/400?random=27', alt: 'After cleaning 4', title: 'Pristine shoe after cleaning', type: 'after' },
+            { src: 'https://picsum.photos/400/400?random=28', alt: 'Before cleaning 5', title: 'Old shoe before cleaning', type: 'before' }
+        ];
+
+        // Initialize before/after grid
+        const beforeAfterGrid = new ImageGridComponent('#before-after-grid', beforeAfterImages, {
+            gap: '12px',
+            borderRadius: '16px',
+            maxWidth: '600px'
+        });
+
+        // Initialize dynamic grid with event logging
+        let dynamicImages = [...sampleImages1];
+        const dynamicGrid = new ImageGridComponent('#dynamic-grid', dynamicImages);
+
+        // Event listeners for dynamic grid
+        const eventLog = document.getElementById('event-log');
+        
+        document.getElementById('dynamic-grid').addEventListener('imageMaximized', (e) => {
+            logEvent(`Image maximized: Index ${e.detail.index}`);
+        });
+        
+        document.getElementById('dynamic-grid').addEventListener('imageMinimized', (e) => {
+            logEvent(`Image minimized: Index ${e.detail.index}`);
+        });
+
+        function logEvent(message) {
+            const timestamp = new Date().toLocaleTimeString();
+            eventLog.innerHTML += `[${timestamp}] ${message}\n`;
+            eventLog.scrollTop = eventLog.scrollHeight;
+        }
+
+        // Dynamic controls
+        function changeImages() {
+            const newImages = [
+                'https://picsum.photos/400/400?random=' + Math.floor(Math.random() * 1000),
+                'https://picsum.photos/400/400?random=' + Math.floor(Math.random() * 1000),
+                'https://picsum.photos/400/400?random=' + Math.floor(Math.random() * 1000),
+                'https://picsum.photos/400/400?random=' + Math.floor(Math.random() * 1000),
+                'https://picsum.photos/400/400?random=' + Math.floor(Math.random() * 1000),
+                'https://picsum.photos/400/400?random=' + Math.floor(Math.random() * 1000),
+                'https://picsum.photos/400/400?random=' + Math.floor(Math.random() * 1000),
+                'https://picsum.photos/400/400?random=' + Math.floor(Math.random() * 1000),
+                'https://picsum.photos/400/400?random=' + Math.floor(Math.random() * 1000)
+            ];
+            dynamicImages = newImages;
+            dynamicGrid.updateImages(dynamicImages);
+            logEvent('Images changed - 9 new random images loaded');
+        }
+
+        function addImage() {
+            if (dynamicImages.length < 9) {
+                dynamicImages.push(`https://picsum.photos/400/400?random=${Date.now()}`);
+                dynamicGrid.updateImages(dynamicImages);
+                logEvent(`Image added - Total: ${dynamicImages.length}`);
+            } else {
+                logEvent('Cannot add more images - Grid is full (9 max)');
+            }
+        }
+
+        function removeImage() {
+            if (dynamicImages.length > 1) {
+                dynamicImages.pop();
+                dynamicGrid.updateImages(dynamicImages);
+                logEvent(`Image removed - Total: ${dynamicImages.length}`);
+            } else {
+                logEvent('Cannot remove more images - Need at least 1 image');
+            }
+        }
+
+        // Log initial state
+        logEvent('Dynamic grid initialized with 9 images');
+    </script>
+</body>
+</html>
